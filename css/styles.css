@@ -1,0 +1,22 @@
+td {
+    width: 60px;
+    height: 40px;
+    border-color: blue;
+    border-width: 1px;
+}
+
+table {
+    background-color: blue;
+}
+
+.null {
+    background-color: white;
+}
+
+.one {
+    background-color: yellow;
+}
+
+.two {
+    background-color: red;
+}
