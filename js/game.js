@@ -79,6 +79,22 @@ function checkVictory(model, x, y, counter = 1) {
     }
 }
 
+function onCellClick(cell, event) {
+    console.log("Clicked X: " + cell.cellIndex + ", Y: " + cell.parentNode.rowIndex)
+    insertFiche(data, $view, cell.cellIndex)
+    //checkVictory(data, cell.cellIndex, cell.parentNode.rowIndex)
+    currentPlayer = (currentPlayer == Player.ONE ? Player.TWO : Player.ONE)
+}
+
+function clear() {
+    currentPlayer = Player.ONE;
+    data = new Model()
+    $view.forEach((cell) => {
+        cell.removeClass("one two null")
+        cell.addClass("null")
+    })
+}
+
 $(document).ready(function() {
     $mainTable = $("#mainTable")
     $mainTable.append(generateTable());
@@ -86,9 +102,10 @@ $(document).ready(function() {
     $view = getSlots();
 
     $("td").click(function(event) {
-        console.log("Clicked X: " + this.cellIndex + ", Y: " + this.parentNode.rowIndex)
-        insertFiche(data, $view, this.cellIndex)
-        //checkVictory(data, this.cellIndex, this.parentNode.rowIndex)
-        currentPlayer = (currentPlayer == Player.ONE ? Player.TWO : Player.ONE)
+        onCellClick(this, event);
+    })
+
+    $("#clearBtn").click(function() {
+        clear();
     })
 })
